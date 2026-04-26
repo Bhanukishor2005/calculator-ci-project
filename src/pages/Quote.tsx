@@ -48,7 +48,8 @@ const Quote = () => {
       return;
     }
     setLoading(true);
-    const { error } = await supabase.from("leads").insert([parsed.data]);
+    const payload = { ...parsed.data, full_name: parsed.data.full_name, phone: parsed.data.phone };
+    const { error } = await supabase.from("leads").insert([payload]);
     setLoading(false);
     if (error) {
       toast({ title: "Submission failed", description: error.message, variant: "destructive" });
