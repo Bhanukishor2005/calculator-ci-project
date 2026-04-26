@@ -14,16 +14,204 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      gallery_items: {
+        Row: {
+          category: string
+          created_at: string
+          id: string
+          image_url: string
+          is_video: boolean
+          title: string
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          id?: string
+          image_url: string
+          is_video?: boolean
+          title: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          id?: string
+          image_url?: string
+          is_video?: boolean
+          title?: string
+        }
+        Relationships: []
+      }
+      job_openings: {
+        Row: {
+          created_at: string
+          department: string | null
+          description: string | null
+          id: string
+          is_open: boolean
+          location: string | null
+          title: string
+          type: string | null
+        }
+        Insert: {
+          created_at?: string
+          department?: string | null
+          description?: string | null
+          id?: string
+          is_open?: boolean
+          location?: string | null
+          title: string
+          type?: string | null
+        }
+        Update: {
+          created_at?: string
+          department?: string | null
+          description?: string | null
+          id?: string
+          is_open?: boolean
+          location?: string | null
+          title?: string
+          type?: string | null
+        }
+        Relationships: []
+      }
+      leads: {
+        Row: {
+          bathrooms: string | null
+          budget_range: string | null
+          created_at: string
+          email: string | null
+          flat_size: string | null
+          full_name: string
+          id: string
+          location: string | null
+          notes: string | null
+          package: string | null
+          phone: string
+          property_type: string | null
+          rooms: string | null
+          society_name: string | null
+          status: string
+        }
+        Insert: {
+          bathrooms?: string | null
+          budget_range?: string | null
+          created_at?: string
+          email?: string | null
+          flat_size?: string | null
+          full_name: string
+          id?: string
+          location?: string | null
+          notes?: string | null
+          package?: string | null
+          phone: string
+          property_type?: string | null
+          rooms?: string | null
+          society_name?: string | null
+          status?: string
+        }
+        Update: {
+          bathrooms?: string | null
+          budget_range?: string | null
+          created_at?: string
+          email?: string | null
+          flat_size?: string | null
+          full_name?: string
+          id?: string
+          location?: string | null
+          notes?: string | null
+          package?: string | null
+          phone?: string
+          property_type?: string | null
+          rooms?: string | null
+          society_name?: string | null
+          status?: string
+        }
+        Relationships: []
+      }
+      site_content: {
+        Row: {
+          key: string
+          updated_at: string
+          value: Json
+        }
+        Insert: {
+          key: string
+          updated_at?: string
+          value: Json
+        }
+        Update: {
+          key?: string
+          updated_at?: string
+          value?: Json
+        }
+        Relationships: []
+      }
+      testimonials: {
+        Row: {
+          created_at: string
+          id: string
+          is_published: boolean
+          name: string
+          quote: string
+          rating: number
+          role: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_published?: boolean
+          name: string
+          quote: string
+          rating?: number
+          role?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_published?: boolean
+          name?: string
+          quote?: string
+          rating?: number
+          role?: string | null
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +338,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+    },
   },
 } as const
