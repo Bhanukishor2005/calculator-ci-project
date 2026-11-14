@@ -2,7 +2,7 @@
 # Calculator Functions
 
 def add(a, b):
-    return a - b  # Intentional error for failure testing
+    return a + b
 
 def subtract(a, b):
     return a - b
